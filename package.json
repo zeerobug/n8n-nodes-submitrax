@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-submitrax-form",
-  "version": "1.2.24",
+  "version": "1.2.25",
   "description": "n8n community node for SubmitraX — manage forms, submissions, workspaces, exports, and members via the SubmitraX API",
   "license": "MIT",
   "homepage": "",
