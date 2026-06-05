@@ -10,6 +10,7 @@ class SubmitraxTrigger {
             icon: { light: 'file:submitrax.svg', dark: 'file:submitrax.dark.svg' },
             group: ['trigger'],
             version: 1,
+            usableAsTool: true,
             subtitle: '={{$parameter["formId"]}}',
             description: 'Starts the workflow when a SubmitraX form receives a submission',
             defaults: {
