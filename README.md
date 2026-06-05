@@ -59,6 +59,9 @@ npm install n8n-nodes-submitrax
 ### 📤 **Export Operations**
 - **Create**: Generate an export of form submissions (CSV or JSON)
 
+### ⚡ **Trigger**
+- **Submission Trigger**: Automatically start your workflow when a form receives a new submission (handles webhook registration and deletion automatically)
+
 ## Compatibility
 
 Tested against n8n version 1.0.0 and above.

@@ -34,7 +34,8 @@
       "dist/credentials/SubmitraxApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/Submitrax/Submitrax.node.js"
+      "dist/nodes/Submitrax/Submitrax.node.js",
+      "dist/nodes/Submitrax/SubmitraxTrigger.node.js"
     ]
   },
   "devDependencies": {

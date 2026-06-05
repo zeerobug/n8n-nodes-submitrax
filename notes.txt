@@ -1,0 +1,9 @@
+Add a trigger node for each submission
+without having to paste the webhook URL into the submitrax dashboard
+You can create webhooks with:
+POST /api/forms/:id/webhooks
+DELETE /api/forms/:id/webhooks
+THe creation returns:
+"webhooks": [
+    { "url": "https://hook.n8n.example.com/..." }
+  ]
