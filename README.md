@@ -1,46 +1,69 @@
 # n8n-nodes-submitrax
 
-This is an n8n community node. It lets you use _app/service name_ in your n8n workflows.
-
-_App/service name_ is _one or two sentences describing the service this node integrates with_.
-
-[n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/sustainable-use-license/) workflow automation platform.
-
-[Installation](#installation)
-[Operations](#operations)
-[Credentials](#credentials)
-[Compatibility](#compatibility)
-[Usage](#usage)
-[Resources](#resources)
-[Version history](#version-history)
+This is an n8n community node for integrating with the [SubmitraX](https://submitrax.com) API. It provides comprehensive access to SubmitraX's form and submission management platform, allowing you to manage workspaces, forms, submissions, members, and exports directly from your n8n workflows.
 
 ## Installation
 
-Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation.
+### Community Nodes (Recommended)
 
-## Operations
+For users on n8n v0.187.0+, install directly through the n8n interface:
 
-_List the operations supported by your node._
+1. Go to **Settings > Community Nodes**
+2. Click **Install**
+3. Enter `n8n-nodes-submitrax`
+4. Click **Download**
 
-## Credentials
+### Manual Installation
 
-_If users need to authenticate with the app/service, provide details here. You should include prerequisites (such as signing up with the service), available authentication methods, and how to set them up._
+```bash
+npm install n8n-nodes-submitrax
+```
+
+## Quick Setup
+
+1. **Get API Token**: Go to your SubmitraX workspace settings and generate an API token.
+2. **Add Node**: In n8n, search for "SubmitraX" in the node palette.
+3. **Configure Credentials**: Create a new SubmitraX API credential and enter your API Token.
+4. **Select Operation**: Choose from the available resources and operations below.
+
+## Usage Examples
+
+### Form Creation and Invites
+1. **Create Workspace**: Create a new workspace for your project.
+2. **Invite Member**: Add collaborators to the workspace.
+3. **Create Form**: Generate a new form to start collecting data.
+
+### Data Export Automation
+1. **Get Forms**: List all forms in a workspace.
+2. **Export Submissions**: Create an export of submissions in CSV or JSON format for reporting.
+
+## Supported Operations
+
+### 📁 **Workspace Management**
+- **Create**: Create a new workspace
+- **Generate Token**: Generate a new API token for a workspace
+- **Get Many**: Retrieve a list of your workspaces
+
+### 📝 **Form Management**
+- **Create**: Create a new form
+- **Get**: Retrieve details of a specific form by ID
+- **Get Many**: List all forms within a workspace
+
+### 📥 **Submission Management**
+- **Get Many**: Retrieve and filter form submissions
+
+### 👥 **Member Management**
+- **Invite**: Invite a new user to a workspace
+- **Get Many**: List all members within a workspace
+
+### 📤 **Export Operations**
+- **Create**: Generate an export of form submissions (CSV or JSON)
 
 ## Compatibility
 
-_State the minimum n8n version, as well as which versions you test against. You can also include any known version incompatibility issues._
-
-## Usage
-
-_This is an optional section. Use it to help users with any difficult or confusing aspects of the node._
-
-_By the time users are looking for community nodes, they probably already know n8n basics. But if you expect new users, you can link to the [Try it out](https://docs.n8n.io/try-it-out/) documentation to help them get started._
+Tested against n8n version 1.0.0 and above.
 
 ## Resources
 
-* [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
-* _Link to app/service documentation._
-
-## Version history
-
-_This is another optional section. If your node has multiple versions, include a short description of available versions and what changed, as well as any compatibility impact._
+* [SubmitraX Official Website](https://submitrax.com)
+* [n8n Community Nodes Documentation](https://docs.n8n.io/integrations/community-nodes/)
