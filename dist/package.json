@@ -1,6 +1,6 @@
 {
     "name": "n8n-nodes-submitrax",
-    "version": "1.3.26",
+    "version": "1.3.27",
     "description": "n8n community node for SubmitraX — manage forms, submissions, workspaces, exports, and members via the SubmitraX API",
     "license": "MIT",
     "homepage": "https://submitrax.com",
@@ -17,6 +17,7 @@
     },
     "scripts": {
         "build": "n8n-node build",
+        "postbuild": "node scripts/fix-dist-package.js",
         "build:watch": "tsc --watch",
         "dev": "n8n-node dev",
         "lint": "n8n-node lint",
@@ -31,11 +32,11 @@
         "n8nNodesApiVersion": 1,
         "strict": true,
         "credentials": [
-            "dist/credentials/SubmitraxApi.credentials.js"
+            "credentials/SubmitraxApi.credentials.js"
         ],
         "nodes": [
-            "dist/nodes/Submitrax/Submitrax.node.js",
-            "dist/nodes/Submitrax/SubmitraxTrigger.node.js"
+            "nodes/Submitrax/Submitrax.node.js",
+            "nodes/Submitrax/SubmitraxTrigger.node.js"
         ]
     },
     "devDependencies": {

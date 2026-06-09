@@ -47,6 +47,7 @@ class SubmitraxTrigger {
             default: {
                 async checkExists() {
                     var _a;
+                    return false;
                     const webhookUrl = this.getNodeWebhookUrl('default');
                     const formId = this.getNodeParameter('formId');
                     const endpoint = `https://s.submitrax.com/api/forms/${formId}/webhooks`;

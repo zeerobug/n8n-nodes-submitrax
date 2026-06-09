@@ -17,6 +17,7 @@
   },
   "scripts": {
     "build": "n8n-node build",
+    "postbuild": "node scripts/fix-dist-package.js",
     "build:watch": "tsc --watch",
     "dev": "n8n-node dev",
     "lint": "n8n-node lint",
