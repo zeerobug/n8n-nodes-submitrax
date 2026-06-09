@@ -46,7 +46,12 @@ class SubmitraxTrigger {
         this.webhookMethods = {
             default: {
                 async checkExists() {
-                    return false;
+                    var _a;
+                    const webhookUrl = this.getNodeWebhookUrl('default');
+                    const formId = this.getNodeParameter('formId');
+                    const endpoint = `https://s.submitrax.com/api/forms/${formId}/webhooks`;
+                    const response = await this.helpers.httpRequestWithAuthentication.call(this, 'submitraxApi', { method: 'GET', url: endpoint, json: true });
+                    return ((_a = response.webhooks) !== null && _a !== void 0 ? _a : []).some((w) => w.url === webhookUrl);
                 },
                 async create() {
                     const webhookUrl = this.getNodeWebhookUrl('default');
