@@ -1,6 +1,8 @@
 # n8n-nodes-submitrax
 
-This is an n8n community node for integrating with the [SubmitraX](https://submitrax.com) API. It provides comprehensive access to SubmitraX's form and submission management platform, allowing you to manage workspaces, forms, submissions, members, and exports directly from your n8n workflows.
+Stop manually checking your forms. This n8n community node connects [SubmitraX](https://submitrax.com) to your workflows so every new submission instantly triggers the next step — notify your team, update your CRM, export to a spreadsheet, or anything else n8n can do.
+
+Full access to the SubmitraX API: manage workspaces, forms, submissions, members, and exports without leaving your automation.
 
 ## Installation
 
@@ -28,14 +30,17 @@ npm install n8n-nodes-submitrax
 
 ## Usage Examples
 
+### Real-time Submission Alerts
+Use the **Submission Trigger** to fire the moment a form is filled out. Route the data to Slack, send a confirmation email, or log it to a database — all automatically.
+
 ### Form Creation and Invites
-1. **Create Workspace**: Create a new workspace for your project.
-2. **Invite Member**: Add collaborators to the workspace.
-3. **Create Form**: Generate a new form to start collecting data.
+1. **Create Workspace**: Spin up a new workspace for a client or project.
+2. **Invite Member**: Add collaborators in the same workflow step.
+3. **Create Form**: Provision a new form programmatically, no manual UI work needed.
 
 ### Data Export Automation
-1. **Get Forms**: List all forms in a workspace.
-2. **Export Submissions**: Create an export of submissions in CSV or JSON format for reporting.
+1. **Get Forms**: Pull the full list of forms in a workspace.
+2. **Export Submissions**: Schedule a daily CSV or JSON export for reporting, then forward it wherever it needs to go.
 
 ## Supported Operations
 

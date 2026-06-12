@@ -35,6 +35,26 @@ exports.formDescription = [
                 },
             },
             {
+                name: 'Get HTML',
+                value: 'getHtml',
+                action: 'Get form HTML',
+                description: 'Fetch the public HTML of a form by its key (no credential required)',
+                routing: {
+                    request: {
+                        method: 'GET',
+                        url: '=/forms/public/{{$parameter.formKey}}/html',
+                        json: false,
+                    },
+                    output: {
+                        postReceive: [
+                            async function (_items, response) {
+                                return [{ json: { html: response.body } }];
+                            },
+                        ],
+                    },
+                },
+            },
+            {
                 name: 'Get Many',
                 value: 'getAll',
                 action: 'Get many forms',
@@ -43,6 +63,18 @@ exports.formDescription = [
                     request: {
                         method: 'GET',
                         url: '/forms',
+                    },
+                },
+            },
+            {
+                name: 'Update',
+                value: 'update',
+                action: 'Update a form',
+                description: 'Update an existing form',
+                routing: {
+                    request: {
+                        method: 'PATCH',
+                        url: '=/forms/{{$parameter.formId}}',
                     },
                 },
             },
@@ -55,8 +87,68 @@ exports.formDescription = [
         type: 'string',
         required: true,
         default: '',
-        displayOptions: { show: { resource: ['form'], operation: ['get'] } },
-        description: 'The ID of the form to retrieve',
+        displayOptions: { show: { resource: ['form'], operation: ['get', 'update'] } },
+        description: 'The ID of the form',
+    },
+    {
+        displayName: 'Form Key',
+        name: 'formKey',
+        type: 'string',
+        required: true,
+        default: '',
+        displayOptions: { show: { resource: ['form'], operation: ['getHtml'] } },
+        description: 'The public key of the form',
+    },
+    {
+        displayName: 'Update Fields',
+        name: 'updateFields',
+        type: 'collection',
+        placeholder: 'Add Field',
+        default: {},
+        displayOptions: { show: { resource: ['form'], operation: ['update'] } },
+        options: [
+            {
+                displayName: 'Custom HTML',
+                name: 'customHtml',
+                type: 'string',
+                typeOptions: { rows: 5 },
+                default: '',
+                description: 'Custom HTML content for the form',
+                routing: {
+                    send: {
+                        type: 'body',
+                        property: 'custom_html',
+                    },
+                },
+            },
+            {
+                displayName: 'Email To',
+                name: 'emailTo',
+                type: 'string',
+                default: '',
+                placeholder: 'alice@example.com,bob@example.com',
+                description: 'Comma-separated email addresses to notify on submission',
+                routing: {
+                    send: {
+                        type: 'body',
+                        property: 'email_to',
+                    },
+                },
+            },
+            {
+                displayName: 'Name',
+                name: 'name',
+                type: 'string',
+                default: '',
+                description: 'The name of the form',
+                routing: {
+                    send: {
+                        type: 'body',
+                        property: 'name',
+                    },
+                },
+            },
+        ],
     },
     {
         displayName: 'Name',
@@ -96,6 +188,20 @@ exports.formDescription = [
         default: {},
         displayOptions: { show: { resource: ['form'], operation: ['create'] } },
         options: [
+            {
+                displayName: 'Custom HTML',
+                name: 'customHtml',
+                type: 'string',
+                typeOptions: { rows: 5 },
+                default: '',
+                description: 'Custom HTML content for the form',
+                routing: {
+                    send: {
+                        type: 'body',
+                        property: 'custom_html',
+                    },
+                },
+            },
             {
                 displayName: 'Email To',
                 name: 'emailTo',

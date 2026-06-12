@@ -1,4 +1,9 @@
-import type { INodeProperties } from 'n8n-workflow';
+import type {
+	IExecuteSingleFunctions,
+	INodeExecutionData,
+	INodeProperties,
+	IN8nHttpFullResponse,
+} from 'n8n-workflow';
 
 const showForForm = { resource: ['form'] };
 
@@ -35,6 +40,30 @@ export const formDescription: INodeProperties[] = [
 				},
 			},
 			{
+				name: 'Get HTML',
+				value: 'getHtml',
+				action: 'Get form HTML',
+				description: 'Fetch the public HTML of a form by its key (no credential required)',
+				routing: {
+					request: {
+						method: 'GET',
+						url: '=/forms/public/{{$parameter.formKey}}/html',
+						json: false,
+					},
+					output: {
+						postReceive: [
+							async function (
+								this: IExecuteSingleFunctions,
+								_items: INodeExecutionData[],
+								response: IN8nHttpFullResponse,
+							): Promise<INodeExecutionData[]> {
+								return [{ json: { html: response.body as string } }];
+							},
+						],
+					},
+				},
+			},
+			{
 				name: 'Get Many',
 				value: 'getAll',
 				action: 'Get many forms',
@@ -46,19 +75,95 @@ export const formDescription: INodeProperties[] = [
 					},
 				},
 			},
+			{
+				name: 'Update',
+				value: 'update',
+				action: 'Update a form',
+				description: 'Update an existing form',
+				routing: {
+					request: {
+						method: 'PATCH',
+						url: '=/forms/{{$parameter.formId}}',
+					},
+				},
+			},
 		],
 		default: 'getAll',
 	},
 
-	// --- Get ---
+	// --- Get / Update ---
 	{
 		displayName: 'Form ID',
 		name: 'formId',
 		type: 'string',
 		required: true,
 		default: '',
-		displayOptions: { show: { resource: ['form'], operation: ['get'] } },
-		description: 'The ID of the form to retrieve',
+		displayOptions: { show: { resource: ['form'], operation: ['get', 'update'] } },
+		description: 'The ID of the form',
+	},
+
+	// --- Get HTML ---
+	{
+		displayName: 'Form Key',
+		name: 'formKey',
+		type: 'string',
+		required: true,
+		default: '',
+		displayOptions: { show: { resource: ['form'], operation: ['getHtml'] } },
+		description: 'The public key of the form',
+	},
+
+	// --- Update ---
+	{
+		displayName: 'Update Fields',
+		name: 'updateFields',
+		type: 'collection',
+		placeholder: 'Add Field',
+		default: {},
+		displayOptions: { show: { resource: ['form'], operation: ['update'] } },
+		options: [
+			{
+				displayName: 'Custom HTML',
+				name: 'customHtml',
+				type: 'string',
+				typeOptions: { rows: 5 },
+				default: '',
+				description: 'Custom HTML content for the form',
+				routing: {
+					send: {
+						type: 'body',
+						property: 'custom_html',
+					},
+				},
+			},
+			{
+				displayName: 'Email To',
+				name: 'emailTo',
+				type: 'string',
+				default: '',
+				placeholder: 'alice@example.com,bob@example.com',
+				description: 'Comma-separated email addresses to notify on submission',
+				routing: {
+					send: {
+						type: 'body',
+						property: 'email_to',
+					},
+				},
+			},
+			{
+				displayName: 'Name',
+				name: 'name',
+				type: 'string',
+				default: '',
+				description: 'The name of the form',
+				routing: {
+					send: {
+						type: 'body',
+						property: 'name',
+					},
+				},
+			},
+		],
 	},
 
 	// --- Create ---
@@ -100,6 +205,20 @@ export const formDescription: INodeProperties[] = [
 		default: {},
 		displayOptions: { show: { resource: ['form'], operation: ['create'] } },
 		options: [
+			{
+				displayName: 'Custom HTML',
+				name: 'customHtml',
+				type: 'string',
+				typeOptions: { rows: 5 },
+				default: '',
+				description: 'Custom HTML content for the form',
+				routing: {
+					send: {
+						type: 'body',
+						property: 'custom_html',
+					},
+				},
+			},
 			{
 				displayName: 'Email To',
 				name: 'emailTo',
