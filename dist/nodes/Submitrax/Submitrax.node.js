@@ -23,7 +23,7 @@ class Submitrax {
             usableAsTool: true,
             inputs: [n8n_workflow_1.NodeConnectionTypes.Main],
             outputs: [n8n_workflow_1.NodeConnectionTypes.Main],
-            credentials: [{ name: 'submitraxApi', required: false }],
+            credentials: [{ name: 'submitraxApi', required: true }],
             requestDefaults: {
                 baseURL: 'https://s.submitrax.com/api',
                 headers: {
