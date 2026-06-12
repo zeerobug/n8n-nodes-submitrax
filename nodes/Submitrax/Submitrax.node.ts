@@ -20,7 +20,7 @@ export class Submitrax implements INodeType {
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
-		credentials: [{ name: 'submitraxApi', required: false }],
+		credentials: [{ name: 'submitraxApi', required: true }],
 		requestDefaults: {
 			baseURL: 'https://s.submitrax.com/api',
 			headers: {
